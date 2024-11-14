@@ -6,17 +6,29 @@
     <title>Movie Watchlist</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="script.js"></script>
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
         <header class="header">
             <h1>Find your film</h1>
             <a href="watchlist.html">My Watchlist</a>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search for a movie">
+                <button class="search-btn">Search</button>
+            </div>
         </header>
-        <main></main>
+        <main>
+            <div class="content"></div>
+        </main>
     </div>
 </body>
 </html>
