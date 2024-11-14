@@ -11,6 +11,14 @@ async function getFilms() {
     const response = await fetch(URL);
     const data = await response.json();
 
+    if (!data.Search || data.Search.length === 0) {
+        mainContainer.style.height = "80vh";
+        mainContainer.innerHTML = `
+            <p class="error-text">Unable to find what you’re looking for. Please try another search.</p>
+        `;
+        return;
+    }
+
     // this gets detailed information for first 6 films as querying
     // by search doesn't give detailed information and querying by 
     // title or imdb id only returns one film data
@@ -20,10 +28,6 @@ async function getFilms() {
         return res.json();
     })
     const filmsArray = await Promise.all(filmDataPromises);
-    // if no films returned, don't update main section
-    if(filmsArray.length === 0) {
-        return;
-    }
 
     renderFilms(filmsArray);
 }
