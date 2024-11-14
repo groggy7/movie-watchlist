@@ -5,28 +5,19 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Karla', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .header {
     position: relative;
     background: url("assets/image.png") center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 20%;
+    height: 20vh;
     color: white;
-    padding: 0 2em;
-}
-
-.header a {
-    text-decoration: none;
-    color: inherit;
 }
 
 .header::before {
@@ -36,18 +27,27 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-.header > * {
-    z-index: 1;
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: 100%;
+}
+
+.header-container a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .search-bar {
     border: 1px solid #D1D5DB;
     border-radius: 4px;
-    width: 70%;
-    max-width: 600px;
+    font-family: inherit;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -89,12 +89,7 @@ body {
 }
 
 .main {
-    height: 80%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding-top: 40px;
 }
 
@@ -110,10 +105,25 @@ body {
     margin: 8px;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 80vh;
+}
+
 .film {
     display: flex;
     align-items: center;
     gap: 12px;
+    width: 100%;
+    padding-bottom: 1em;
+}
+
+.film:not(:last-child) {
+    border-bottom: 1px solid #E5E7EB;
 }
 
 .film-poster {
@@ -124,6 +134,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1;
 }
 
 .film-info * {
@@ -131,8 +142,8 @@ body {
 }
 
 .film-title {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .film-specs {
@@ -142,16 +153,36 @@ body {
 }
 
 .film-desc {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    color: #6B7280;
+}
+
+.add-watchlist-btn {
+    background-color: inherit;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 200;
 }
 
 @media (min-width: 800px) {
-    .container {
-        width: 70%;
+    html {
+        font-size: 20px;
+    }
+
+    .header, .main {
+        max-width: 1280px;
         margin: 0 auto;
     }
 
-    .header {
-        padding: 0 3em;
+    .container {
+        max-width: 800px;
+    }
+
+    .film-desc {
+        color: #6B7280;
     }
 }

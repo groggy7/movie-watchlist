@@ -1,4 +1,4 @@
-const mainEl = document.querySelector(".main");
+const mainContainer = document.querySelector(".main-container");
 const inputEl = document.querySelector(".search-input");
 const baseURL = "http://www.omdbapi.com/";
 const searchBtn = document.querySelector(".search-btn");
@@ -11,10 +11,10 @@ async function getFilms() {
     const response = await fetch(URL);
     const data = await response.json();
 
-    // this gets detailed information for first 10 films as querying
+    // this gets detailed information for first 6 films as querying
     // by search doesn't give detailed information and querying by 
     // title or imdb id only returns one film data
-    const filmData = data.Search.slice(0, 10);
+    const filmData = data.Search.slice(0, 6);
     const filmDataPromises = filmData.map(async film => {
         const res = await fetch(baseURL + `?apikey=${apiKey}&i=${film.imdbID}`)
         return res.json();
@@ -29,7 +29,7 @@ async function getFilms() {
 }
 
 async function renderFilms(filmsArray) {
-    mainEl.style.height = "min-content";
+    mainContainer.style.height = "min-content";
 
     let htmlContent = "";
     filmsArray.forEach(film => {
@@ -65,5 +65,5 @@ async function renderFilms(filmsArray) {
         `
     });
 
-    mainEl.innerHTML = htmlContent;
+    mainContainer.innerHTML = htmlContent;
 }
