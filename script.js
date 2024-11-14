@@ -12,7 +12,6 @@ async function getFilms() {
     const data = await response.json();
 
     if (!data.Search || data.Search.length === 0) {
-        mainContainer.style.height = "80vh";
         mainContainer.innerHTML = `
             <p class="error-text">Unable to find what you’re looking for. Please try another search.</p>
         `;
@@ -33,8 +32,6 @@ async function getFilms() {
 }
 
 async function renderFilms(filmsArray) {
-    mainContainer.style.height = "min-content";
-
     let htmlContent = "";
     filmsArray.forEach(film => {
         htmlContent += `
