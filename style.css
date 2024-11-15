@@ -147,6 +147,7 @@ body {
     font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
+    gap: 1em;
 }
 
 .film-desc {
@@ -154,7 +155,7 @@ body {
     color: #6B7280;
 }
 
-.add-watchlist-btn {
+.btn {
     background-color: inherit;
     border: none;
     display: flex;
@@ -163,6 +164,16 @@ body {
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: 200;
+}
+
+.add-watchlist-btn {
+    text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+    .film-specs * {
+        font-size: 12px;
+    }
 }
 
 @media (min-width: 800px) {
