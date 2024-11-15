@@ -81,7 +81,6 @@ body {
 .main {
     margin: 0 auto;
     padding-top: 40px;
-    height: calc(100vh - 200px);
 }
 
 .initial-content {

@@ -1,10 +1,28 @@
 const mainContainer = document.querySelector(".main-container");
 const inputEl = document.querySelector(".search-input");
-const baseURL = "http://www.omdbapi.com/";
 const searchBtn = document.querySelector(".search-btn");
+const baseURL = "http://www.omdbapi.com/";
 const apiKey = "omdb api key here";
 
 searchBtn.addEventListener("click", getFilms)
+
+function setAddWatchlistListener(buttons) {
+    buttons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const dataset = e.currentTarget.dataset;
+            const filmObj = {
+                title: dataset.title,
+                runtime: dataset.runtime,
+                genre: dataset.genre,
+                imdbRating: dataset.imdb,
+                plot: dataset.plot,
+                poster: dataset.poster
+            }
+
+            localStorage.setItem(dataset.title, JSON.stringify(filmObj));
+        })
+    })
+}
 
 async function getFilms() {
     const URL = baseURL + `?apikey=${apiKey}&s=${inputEl.value}`;
@@ -18,10 +36,10 @@ async function getFilms() {
         return;
     }
 
-    // this gets detailed information for first 6 films as querying
+    // this gets detailed information for first 12 films as querying
     // by search doesn't give detailed information and querying by 
     // title or imdb id only returns one film data
-    const filmData = data.Search.slice(0, 6);
+    const filmData = data.Search.slice(0, 12);
     const filmDataPromises = filmData.map(async film => {
         const res = await fetch(baseURL + `?apikey=${apiKey}&i=${film.imdbID}`)
         return res.json();
@@ -53,7 +71,8 @@ async function renderFilms(filmsArray) {
                     <div class="film-specs">
                         <p class="film-runtime">${film.Runtime}</p>
                         <p class="film-genre">${film.Genre}</p>
-                        <button class="add-watchlist-btn">
+                        <button class="add-watchlist-btn" data-title="${film.Title}" data-poster="${film.Poster}"
+                        data-imdb="${film.imdbRating}" data-runtime="${film.Runtime}" data-genre="${film.Genre}" data-plot="${film.Plot}">
                             <i class="fa-solid fa-circle-plus"></i>
                             <span>Watchlist</span>
                         </button>
@@ -67,4 +86,5 @@ async function renderFilms(filmsArray) {
     });
 
     mainContainer.innerHTML = htmlContent;
+    setAddWatchlistListener(document.querySelectorAll(".add-watchlist-btn"));
 }
